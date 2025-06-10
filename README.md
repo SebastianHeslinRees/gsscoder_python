@@ -33,7 +33,7 @@ UK administrative geographies boundaries are constantly changing. Local authorit
 Clone the repository and install locally:
 
 ```bash
-git clone https:
+git clone 
 cd gsscoder_python
 pip install .
 ```
