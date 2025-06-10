@@ -1,7 +1,6 @@
 # gsscoder_python
 
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
 > *A lightweight Python package for recoding and aggregating UK Local Authority (LA) statistics across different GSS code vintages, supporting splits and merges in administrative boundaries.*
