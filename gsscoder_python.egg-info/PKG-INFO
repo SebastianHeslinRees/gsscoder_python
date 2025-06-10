@@ -1,0 +1,19 @@
+Metadata-Version: 2.2
+Name: gsscoder_python
+Version: 0.1.0
+Summary: Python implementation to recode GSS codes
+Home-page: https://github.com/yourusername/gsscoder_python
+Author: Sebastian Heslin-Rees
+Author-email: Sebastian.Heslin-Rees@london.gov.uk
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Requires-Dist: pandas
+Requires-Dist: pyreadr
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
