@@ -1,11 +1,13 @@
 import pandas as pd
 import numpy as np
-import pyreadr
+import pickle
 import pkg_resources
 
-def load_rds(filename):
+def load_pickle(filename):
+    """Load data from pickle file in package's lookups directory"""
     path = pkg_resources.resource_filename(__name__, f"lookups/{filename}")
-    return pyreadr.read_r(path)[None]
+    with open(path, 'rb') as f:
+        return pickle.load(f)
 
 def validate_recode_gss(df_in, col_code, col_data, recode_to_year, recode_from_year, fun, la_names, database_year):
     """
@@ -37,7 +39,6 @@ def validate_recode_gss(df_in, col_code, col_data, recode_to_year, recode_from_y
         if df_in[col].isin(la_names).any():
             print(f"Warning: LA names detected in column '{col}'. Consider removing this column.")
 
-
 def recode_gss(
     df_in,
     col_code='gss_code',
@@ -57,9 +58,9 @@ def recode_gss(
 
     # Automatically load package-internal data if not passed
     if all_lad_codes_dates is None:
-        all_lad_codes_dates = load_rds("all_lad_codes_dates.rds")
+        all_lad_codes_dates = load_pickle("all_lad_codes_dates.pickle")
     if lad_code_changes is None:
-        lad_code_changes = load_rds("lad_code_changes.rds")
+        lad_code_changes = load_pickle("lad_code_changes.pickle")
 
     la_names = all_lad_codes_dates['gss_name'].unique()
 
