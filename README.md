@@ -146,6 +146,3 @@ please email [sebastian.heslin-rees@london.gov.uk] for license infomation.
 
 ---
 
-## 📄 Acknowledgements
-
-- [GLA Population Projection]([https://www.gla.gov.uk](https://www.london.gov.uk/)) for the dataset.
