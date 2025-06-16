@@ -1,2 +1,2 @@
 include README.md
-recursive-include gsscoder_python/lookups *.rds
+recursive-include gsscoder_python/lookups *.pickle
