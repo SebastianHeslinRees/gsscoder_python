@@ -61,6 +61,11 @@ def recode_gss(
         all_lad_codes_dates = load_pickle("all_lad_codes_dates.pickle")
     if lad_code_changes is None:
         lad_code_changes = load_pickle("lad_code_changes.pickle")
+    
+    # Convert year column to integer to handle string/int mismatch
+    if lad_code_changes['year'].dtype == 'object':
+        lad_code_changes = lad_code_changes.copy()
+        lad_code_changes['year'] = lad_code_changes['year'].astype(int)
 
     la_names = all_lad_codes_dates['gss_name'].unique()
 
@@ -112,6 +117,16 @@ def recode_gss(
         lookup = lookup.groupby('changed_from_code')['changed_to_code'].apply(lambda x: ', '.join(x.unique())).reset_index()
 
     df = df.merge(lookup, how='left', left_on='gss_code', right_on='changed_from_code')
+    
+    # Show which GSS codes are being changed
+    changed_codes = df[df['changed_to_code'].notna()]
+    if not changed_codes.empty:
+        unique_changes = changed_codes[['gss_code', 'changed_to_code']].drop_duplicates()
+        for _, row in unique_changes.iterrows():
+            print(f"Recoding GSS code: {row['gss_code']} -> {row['changed_to_code']}")
+    else:
+        print("No GSS codes required recoding.")
+    
     df['gss_code'] = df['changed_to_code'].fillna(df['gss_code'])
     df.drop(columns=['changed_from_code', 'changed_to_code'], inplace=True)
 
